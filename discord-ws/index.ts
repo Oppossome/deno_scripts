@@ -38,7 +38,7 @@ interface ListenerOptions {
   }
 }
 
-class Listener {
+class DiscordWS {
   HeartbeatInfo: { Worker: number; Interval: number; Key: number }
   Callbacks: { [key: string]: Callback }
   WebSocket?: WebSocketClient
@@ -137,4 +137,4 @@ class Listener {
   }
 }
 
-export default Listener
+export {DiscordWS, Intents}
