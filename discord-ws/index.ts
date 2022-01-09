@@ -113,6 +113,7 @@ class DiscordWS {
   }
 
   Connect() {
+    if( this.WebSocket !== undefined ) this.WebSocket.close(0)
     this.HeartbeatInfo = {Worker: 0, Interval:10000, Key: 0}
     this.Callbacks = {}
 
