@@ -32,9 +32,9 @@ interface ListenerOptions {
   Logging?: boolean;
   Intents: Intents[];
   Properties?: {
-    "$os": "Windows",
-    "$device": "discord-ws",
-    "$browser": "discord-ws"
+    "$os": string,
+    "$device": string,
+    "$browser": string
   }
 }
 
@@ -114,8 +114,8 @@ class DiscordWS {
 
     if( this.Options.Properties === undefined ){
       this.Options.Properties = {
-        $browser: "discord-ws",
-        $device: "discord-ws",
+        $browser: "discordws",
+        $device: "discordws",
         $os: "Windows",
       }
     }
