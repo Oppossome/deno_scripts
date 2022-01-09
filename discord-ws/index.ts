@@ -85,6 +85,11 @@ class DiscordWS {
 
         break
 
+      case 7: // Reconnect
+        console.log('Reconnecting')
+        this.Connect()
+        break
+
       case 9: // Session Invalidated
         console.log("Session Invalidated!")
         this.WebSocket.close(0)
@@ -107,18 +112,9 @@ class DiscordWS {
     this.Callbacks[eventName] = callback
   }
 
-  constructor( options: ListenerOptions ) {
+  Connect() {
     this.HeartbeatInfo = {Worker: 0, Interval:10000, Key: 0}
-    this.Options = options
     this.Callbacks = {}
-
-    if( this.Options.Properties === undefined ){
-      this.Options.Properties = {
-        $browser: "discordws",
-        $device: "discordws",
-        $os: "Windows",
-      }
-    }
 
     fetch("https://discord.com/api/gateway")
       .then( x => x.json() )
@@ -134,6 +130,22 @@ class DiscordWS {
           console.log(rawMessage)
         } )
       } )
+  }
+
+  constructor( options: ListenerOptions ) {
+    this.HeartbeatInfo = {Worker: 0, Interval:10000, Key: 0}
+    this.Options = options
+    this.Callbacks = {}
+
+    if( this.Options.Properties === undefined ){
+      this.Options.Properties = {
+        $browser: "discordws",
+        $device: "discordws",
+        $os: "Windows",
+      }
+    }
+
+    this.Connect()
   }
 }
 
